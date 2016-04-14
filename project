@@ -1,0 +1,5 @@
+fso m:read,write
+db m:select,upsert
+MyClass1 v:myVar m:myMethod
+MyClass2 e:MyClass2
+
