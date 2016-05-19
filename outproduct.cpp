@@ -11,6 +11,7 @@ void OutProduct::Product()
         this->requirements.clear();
         this->childs.clear();
         this->parents.clear();
+        this->variables.clear();
     }
 
 void OutProduct::removeDuplicates()
@@ -18,6 +19,7 @@ void OutProduct::removeDuplicates()
     this->parents.removeDuplicates();
     this->childs.removeDuplicates();
     this->requirements.removeDuplicates();
+    this->variables.removeDuplicates();
 }
 
 
@@ -30,7 +32,7 @@ void OutProduct::copyvalues(OutProduct p)
         this->setOptions(p.getOptions());
         this->setClassName(p.getClassName());
         this->setUses(p.getUses());
-        this->setNameSpace(p.getNameSpace());
+        this->setNameSpace(p.getNameSpace());        
     }
 
 QString OutProduct::getClassName()
@@ -51,6 +53,11 @@ QStringList OutProduct::getRequirements()
 void OutProduct::setRequirments(QStringList r)
     {
         this->requirements = r;
+    }
+
+void OutProduct::setVariables(QStringList vs)
+    {
+        this->variables = vs;
     }
 
 void OutProduct::setUses(QStringList u)
@@ -93,6 +100,12 @@ QStringList OutProduct::getParents()
 {
     return this->parents;
 }
+
+QStringList OutProduct::getVariables()
+{
+    return this->variables;
+}
+
 
 QStringList OutProduct::getChilds()
 {

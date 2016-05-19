@@ -91,6 +91,8 @@ QStringList variables;
          variables = option.split(':').last().split(',');
        };
 
+       result.setVariables(variables);
+
        if (option.contains("u:"))
        {
          result.uses = option.split(':').last().split(',');
@@ -225,7 +227,28 @@ QStringList variables;
 
     result.className = args.at(1);
 
-    funcdecl.prepend("function __construct(){\r\n/* parent::__construct();*/\r\n}");
+
+    QStringList c1;
+    QStringList c2;
+    QStringListIterator vrs (result.getVariables());
+    QString c = "";
+    QString vr = "";
+    while (vrs.hasNext())
+    {
+        vr = vrs.next();
+        c1.append("$"+vr);
+        c2.append("$this->"+vr+"="+vr);
+    }
+
+
+
+
+
+
+    funcdecl.prepend("function __construct(" + c1.join(",")  +  "){\r\n/* parent::__construct(); "+ c2.join(";\r\n") + " */\r\n}");
+
+
+
     classdecl = classwrapper(result.className+addinterfaces+addclasses, funcdecl);
     if (result.clsnamespace != "")
     {

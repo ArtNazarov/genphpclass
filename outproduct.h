@@ -13,6 +13,7 @@ class OutProduct
         QStringList requirements;
         QStringList childs;
         QStringList uses;
+        QStringList variables;
         QStringList parents;
         QString clsnamespace;
         QString className;
@@ -24,10 +25,12 @@ class OutProduct
         QString getMarkup();
         QString getFilename();
         QString getNameSpace();
+
         QStringList getParents();
         QStringList getRequirements();
         QStringList getUses();
         QStringList getChilds();
+        QStringList getVariables();
 
         void setClassName(QString name);        
         void setRequirments(QStringList r);
@@ -39,6 +42,7 @@ class OutProduct
         void setFilename(QString n);
         void setNameSpace(QString ns);        
         void setParents(QStringList pr);
+        void setVariables(QStringList vs);
 
         void removeDuplicates();
 };
