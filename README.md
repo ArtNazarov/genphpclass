@@ -126,6 +126,16 @@ will output
 	class Dog implements woof extends Animal{
 	}
 	?>
+	
+Finalization
+=========
+	./genphpclass *myFinalClass
+
+will output
+
+	...
+	final class myFinalClass
+	...
 
 Batch processing
 ================
