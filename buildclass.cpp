@@ -110,7 +110,15 @@ QStringList variables;
                 };
       };
 };
+
+    if (args.at(1).at(0)!='*')
+    {
     result.setFilename(args.at(1) + ".php");
+    }
+    else
+    {
+    result.setFilename(args.at(1).mid(1) + ".php");
+    }
 
     if (classMethods.size()>0)
     {
@@ -215,7 +223,8 @@ QStringList variables;
     };
    };
 
-    result.className = args.at(1);    
+    result.className = args.at(1);
+
     funcdecl.prepend("function __construct(){\r\n/* parent::__construct();*/\r\n}");
     classdecl = classwrapper(result.className+addinterfaces+addclasses, funcdecl);
     if (result.clsnamespace != "")

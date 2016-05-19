@@ -2,7 +2,7 @@
 #include "commonfuncs.h"
 
 void OutProduct::Product()
-    {
+    {        
         this->markup = "";
         this->options = "";
         this->filename = "";
