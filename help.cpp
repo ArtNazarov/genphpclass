@@ -20,6 +20,8 @@ OutProduct help()
     result.markup.append("\r\n Use prefix * in className to declare class as the final ");
     result.markup.append("\r\n Use --public-gs to make setters and getters public ");
     result.markup.append("\r\n Use --as-interface to declare interface. Methods will be public and empty, no variables ");
+    result.markup.append("\r\n After method name add delimeter @ and declare formal variables (using as splitter '-'");
+    result.markup.append("\r\n ./genphpclass iInteract --as-interface m:interact@sender-receiver-sum c:Payment ");
     result.markup.append("\r\n */");
     result.filename = "";
     result.options = "";

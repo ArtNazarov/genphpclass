@@ -213,6 +213,38 @@ will output
     }
     ?>
 
+Formal parameters
+=================
+
+After method name add delimeter @ and declare formal variables (using as splitter '-')
+
+./genphpclass iInteract --as-interface m:interact@sender-receiver-sum c:Payment
+
+
+    <?php
+    interface iInteract{
+
+    public function interact( $sender,$receiver,$sum ){ };
+    }
+    ?>
+
+
+    <?php
+    require_once "iInteract.php";
+    class Payment extends iInteract{  
+    
+    
+    function __construct(){
+    /* parent::__construct(); 
+    ;
+    */
+    }
+    
+    
+    public function interact( $sender,$receiver,$sum ){ };
+    }
+    ?>
+
 
 
 Batch processing
