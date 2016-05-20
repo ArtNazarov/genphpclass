@@ -140,7 +140,7 @@ will output
 Constructors
 =========
 
-    ./genphpclass myClass v:.birthday,.name,.surname
+    ./genphpclass myClass v:.birthday,.name,.surname --public-gs
 
 will output
 
@@ -161,12 +161,12 @@ will output
     }
     
     
-    private function setBirthday( $p ) {$this->birthday = $p;return $this;}
-    private function getBirthday( ) {return $this->birthday;}
-    private function setName( $p ) {$this->name = $p;return $this;}
-    private function getName( ) {return $this->name;}
-    private function setSurname( $p ) {$this->surname = $p;return $this;}
-    private function getSurname( ) {return $this->surname;}
+    public function setBirthday( $p ) {$this->birthday = $p;return $this;}
+    public function getBirthday( ) {return $this->birthday;}
+    public function setName( $p ) {$this->name = $p;return $this;}
+    public function getName( ) {return $this->name;}
+    public function setSurname( $p ) {$this->surname = $p;return $this;}
+    public function getSurname( ) {return $this->surname;}
     }
     ?>
 

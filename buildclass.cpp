@@ -17,6 +17,7 @@ OutProduct buildclass(QStringList args)
 OutProduct result;
 bool makeProperties = false;
 bool addRequirements = false;
+bool ignoreScopes = false;
 QTextStream cout(stdout);
 QString funcdecl = "";
 QString classdecl = "";
@@ -87,6 +88,11 @@ QString varsDeclarations = "";
        {
           classMethods =  option.split(':').last().split(',');
        };
+
+       if (option.contains("--public-gs"))
+       {
+           ignoreScopes = true;
+       }
 
        if (option.contains("v:"))
        {
@@ -217,6 +223,7 @@ QString varsDeclarations = "";
            varsDeclarations.append(variable);
            if (makeProperties)
            {
+           if (ignoreScopes) {scope = "public"; };
            propertiesMethods.append(scope + " function set"+capfirst(cleanName)+"( $p ) {$this->" + cleanName + " = $p;return $this;}\r\n");
            propertiesMethods.append(scope + " function get"+capfirst(cleanName)+"( ) {return $this->" + cleanName +";}\r\n");
            };
