@@ -230,7 +230,7 @@ QString varsDeclarations = "";
            variable = cleanName;
            variable.prepend(scope + " $");
            variable.prepend("*/\r\n");
-           variable.prepend("* @var\r\n");
+           variable.prepend("* @var $"+cleanName+"\r\n");
            variable.prepend("/**\r\n");
            variable.append(";\n\r");
            varsDeclarations.append(variable);

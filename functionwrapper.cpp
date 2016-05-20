@@ -33,27 +33,29 @@ QString functionwrapper(QString funcdecl, bool asInterface)
 
 
     QString vars = "";
+    QStringList comments_for_vars;
     QString v;
 
-    comments.append("/**");
-    comments.append("*");
 
     if (funcdecl.contains('@'))
     {
          formal_variables = funcdecl.split('@')[1].split('-');
          methodname = funcdecl.split('@')[0];
-         comments.append("* Autocomment for "+methodname);
+
          QStringListIterator fv (formal_variables);
          while (fv.hasNext())
          {
              v = fv.next();
              declaration.append('$'+v);
-             comments.append("* @param $"+v);
+             comments_for_vars.append("* @param $"+v);
          };
          vars = declaration.join(',');
 
     };
-
+    comments.append("/**");
+    comments.append("*");
+    comments.append("* Autocomment for "+methodname);
+    comments.append(comments_for_vars.join("\r\n"));
     comments.append("*\r\n");
     comments.append("*/\r\n");
     QString w = ";";
