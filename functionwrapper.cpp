@@ -46,5 +46,10 @@ QString functionwrapper(QString funcdecl, bool asInterface)
          vars = declaration.join(',');
     };
 
-    return "\t " + scope + " function "+methodname+"( " + vars + " ){ };\r\n";
+    QString w = ";";
+    if (!asInterface)
+    {
+        w = "{ }";
+    };
+    return "\t " + scope + " function "+methodname+"( " + vars + " )"+ w + ";\r\n";
 }
