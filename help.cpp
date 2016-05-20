@@ -17,6 +17,7 @@ OutProduct help()
     result.markup.append("\r\n Use -r to add requirements by names passed in i: and e: keys");
     result.markup.append("\r\n Use prefix # to generate protected functions or variables, for example: v:#protectedVariable");
     result.markup.append("\r\n Use prefix . to generate private functions or variable, for example: m:.privateFunc");
+    result.markup.append("\r\n Use prefix * in className to declare class as the final ");
     result.markup.append("\r\n */");
     result.filename = "";
     result.options = "";

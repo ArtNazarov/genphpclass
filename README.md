@@ -137,6 +137,40 @@ will output
 	final class myFinalClass
 	...
 
+Constructors
+=========
+
+    ./genphpclass myClass v:.birthday,.name,.surname
+
+will output
+
+    <?php
+    class myClass{
+    
+    private $birthday;
+    private $name;
+    private $surname;
+    
+    
+    function __construct($birthday,$name,$surname){
+    /* parent::__construct(); 
+    $this->birthday=$birthday;
+    $this->name=$name;
+    $this->surname=$surname;
+    */
+    }
+    
+    
+    private function setBirthday( $p ) {$this->birthday = $p;return $this;}
+    private function getBirthday( ) {return $this->birthday;}
+    private function setName( $p ) {$this->name = $p;return $this;}
+    private function getName( ) {return $this->name;}
+    private function setSurname( $p ) {$this->surname = $p;return $this;}
+    private function getSurname( ) {return $this->surname;}
+    }
+    ?>
+
+
 Batch processing
 ================
 

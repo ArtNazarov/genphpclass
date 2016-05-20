@@ -28,6 +28,8 @@ QStringList interfaces;
 QStringList parentClasses;
 QStringList classMethods;
 QStringList variables;
+QString varsDeclarations = "";
+
 
 
 
@@ -192,7 +194,7 @@ QStringList variables;
        QStringListIterator vars ( variables );
        QString cleanName = "";
        QString variable = "";
-       QString varsDeclarations = "";
+
        QString propertiesMethods = "";
        QString scope = "public";
        while (vars.hasNext())
@@ -221,7 +223,7 @@ QStringList variables;
            lastVar = cleanName;
        };
        funcdecl.prepend(propertiesMethods);
-       funcdecl.prepend(varsDeclarations);
+
     };
    };
 
@@ -236,20 +238,21 @@ QStringList variables;
     while (vrs.hasNext())
     {
         vr = vrs.next();
+        if ((vr.at(0) == '#') || (vr.at(0)=='.'))
+        {
+            vr = vr.mid(1);
+        };
         c1.append("$"+vr);
-        c2.append("$this->"+vr+"="+vr);
+        c2.append("$this->"+vr+"=$"+vr);
     }
 
 
 
 
 
-
-    funcdecl.prepend("function __construct(" + c1.join(",")  +  "){\r\n/* parent::__construct(); "+ c2.join(";\r\n") + " */\r\n}");
-
-
-
-    classdecl = classwrapper(result.className+addinterfaces+addclasses, funcdecl);
+    QString constr;
+    constr = "\r\n function __construct(" + c1.join(",")  +  "){\r\n/* parent::__construct(); \r\n"+ c2.join(";\r\n") + ";\r\n */\r\n}\r\n";
+    classdecl = classwrapper(result.className+addinterfaces+addclasses, constr, varsDeclarations, funcdecl);
     if (result.clsnamespace != "")
     {
       result.setMarkup(namespacewrapper(result.clsnamespace, classdecl));
