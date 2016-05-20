@@ -4,7 +4,7 @@
 #include <QString>
 #include <commonfuncs.h>
 
-QString functionwrapper(QString funcdecl);
+QString functionwrapper(QString funcdecl, bool asInterface);
 
 #endif // FUNCTIONWRAPPER
 

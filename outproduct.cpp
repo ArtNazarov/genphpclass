@@ -32,7 +32,9 @@ void OutProduct::copyvalues(OutProduct p)
         this->setOptions(p.getOptions());
         this->setClassName(p.getClassName());
         this->setUses(p.getUses());
-        this->setNameSpace(p.getNameSpace());        
+        this->setNameSpace(p.getNameSpace());
+        this->setMethods(p.getMethods());
+        this->setVariables(p.getVariables());
     }
 
 QString OutProduct::getClassName()
@@ -59,6 +61,12 @@ void OutProduct::setVariables(QStringList vs)
     {
         this->variables = vs;
     }
+
+void OutProduct::setMethods(QStringList ms)
+    {
+        this->methods = ms;
+    }
+
 
 void OutProduct::setUses(QStringList u)
     {
@@ -104,6 +112,11 @@ QStringList OutProduct::getParents()
 QStringList OutProduct::getVariables()
 {
     return this->variables;
+}
+
+QStringList OutProduct::getMethods()
+{
+    return this->methods;
 }
 
 

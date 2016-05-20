@@ -18,6 +18,7 @@ OutProduct result;
 bool makeProperties = false;
 bool addRequirements = false;
 bool ignoreScopes = false;
+bool asInterface = false;
 QTextStream cout(stdout);
 QString funcdecl = "";
 QString classdecl = "";
@@ -86,13 +87,21 @@ QString varsDeclarations = "";
 
        if (option.contains("m:"))
        {
-          classMethods =  option.split(':').last().split(',');
+          classMethods =  option.split(':').last().split(',');          
+
+          result.setMethods(classMethods);
+
        };
 
        if (option.contains("--public-gs"))
        {
            ignoreScopes = true;
-       }
+       };
+
+       if (option.contains("--as-interface"))
+       {
+            asInterface = true;
+       };
 
        if (option.contains("v:"))
        {
@@ -136,7 +145,7 @@ QString varsDeclarations = "";
          QStringListIterator funcs(classMethods);
          while (funcs.hasNext())
           {
-             funcdecl.append(functionwrapper(funcs.next()));
+             funcdecl.append(functionwrapper(funcs.next(), asInterface));
           };
            // printstr("prepare function", funcdecl);
     };
@@ -217,11 +226,12 @@ QString varsDeclarations = "";
                scope = "protected";
                cleanName = ignoreFirstLetter(cleanName);
             };
+
            variable = cleanName;
            variable.prepend(scope + " $");
            variable.append(";\n\r");
            varsDeclarations.append(variable);
-           if (makeProperties)
+           if ((makeProperties) && (!asInterface))
            {
            if (ignoreScopes) {scope = "public"; };
            propertiesMethods.append(scope + " function set"+capfirst(cleanName)+"( $p ) {$this->" + cleanName + " = $p;return $this;}\r\n");
@@ -235,7 +245,7 @@ QString varsDeclarations = "";
    };
 
     result.className = args.at(1);
-
+    QString constr = "";
 
     QStringList c1;
     QStringList c2;
@@ -252,14 +262,10 @@ QString varsDeclarations = "";
         c1.append("$"+vr);
         c2.append("$this->"+vr+"=$"+vr);
     }
-
-
-
-
-
-    QString constr;
     constr = "\r\n function __construct(" + c1.join(",")  +  "){\r\n/* parent::__construct(); \r\n"+ c2.join(";\r\n") + ";\r\n */\r\n}\r\n";
-    classdecl = classwrapper(result.className+addinterfaces+addclasses, constr, varsDeclarations, funcdecl);
+
+    classdecl = classwrapper(result.className+addinterfaces+addclasses, constr, varsDeclarations, funcdecl, asInterface);
+
     if (result.clsnamespace != "")
     {
       result.setMarkup(namespacewrapper(result.clsnamespace, classdecl));

@@ -26,8 +26,10 @@ void makeClass(QStringList args)
     QTextStream cout(stdout);
 
     cout << "// CLASSNAME:" << MyClass.className << endl;
-    cout << "// Childs:" << MyClass.childs.size() << endl;
-    cout << "// Requirements:" << MyClass.childs.size() << endl;
+    cout << "// Count of variables:" << MyClass.getVariables().size() << endl;
+    cout << "// Count of methods:" << MyClass.getMethods().size() << endl;
+    cout << "// Count of child:" << MyClass.getChilds().size() << endl;
+    cout << "// Count of requirments:" << MyClass.getRequirements().size() << endl;
     cout << "// arguments: ";
 
     it.toFront();
@@ -44,6 +46,7 @@ void makeClass(QStringList args)
     outresult(MyClass);
 
 
+
     if (MyClass.childs.size()>0)
     {
         QStringList args;
@@ -54,6 +57,9 @@ void makeClass(QStringList args)
                 args.append("app");
                 args.append(cld.next());
                 args.append("e:"+MyClass.className);
+
+                args.append("m:"+MyClass.getMethods().join(','));
+
                 args.append("-w");
                 if (MyClass.clsnamespace != "")
                     (args.append("n:"+MyClass.clsnamespace)); // ???

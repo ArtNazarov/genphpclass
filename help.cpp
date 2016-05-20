@@ -19,6 +19,7 @@ OutProduct help()
     result.markup.append("\r\n Use prefix . to generate private functions or variable, for example: m:.privateFunc");
     result.markup.append("\r\n Use prefix * in className to declare class as the final ");
     result.markup.append("\r\n Use --public-gs to make setters and getters public ");
+    result.markup.append("\r\n Use --as-interface to declare interface. Methods will be public and empty, no variables ");
     result.markup.append("\r\n */");
     result.filename = "";
     result.options = "";

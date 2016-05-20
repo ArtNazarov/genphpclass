@@ -173,6 +173,47 @@ will output
     }
     ?>
 
+Interfaces
+================
+
+	./genphpclass iTemplate --as-interface m:genHtml c:Template
+
+will output
+
+
+	<?php
+	interface iTemplate{
+	
+	
+
+	
+    public function genHtml( ){ };
+    }
+    ?>
+
+    // CLASSNAME:Template
+    // Count of variables:0
+    // Count of methods:1
+    // Count of child:0
+    // Count of requirments:1
+    // arguments: app Template e:iTemplate m:genHtml -w 
+    
+    <?php
+    require_once "iTemplate.php";
+    class Template extends iTemplate{
+    
+    
+    
+    function __construct(){
+    /* parent::__construct(); 
+    ;
+    */
+    }
+    public function genHtml( ){ };
+    }
+    ?>
+
+
 
 Batch processing
 ================

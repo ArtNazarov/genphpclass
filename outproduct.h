@@ -17,6 +17,8 @@ class OutProduct
         QStringList parents;
         QString clsnamespace;
         QString className;
+        QStringList methods;
+
         void Product();
         void copyvalues(OutProduct p);
 
@@ -31,6 +33,7 @@ class OutProduct
         QStringList getUses();
         QStringList getChilds();
         QStringList getVariables();
+        QStringList getMethods();
 
         void setClassName(QString name);        
         void setRequirments(QStringList r);
@@ -43,6 +46,8 @@ class OutProduct
         void setNameSpace(QString ns);        
         void setParents(QStringList pr);
         void setVariables(QStringList vs);
+        void setMethods(QStringList ms);
+
 
         void removeDuplicates();
 };
