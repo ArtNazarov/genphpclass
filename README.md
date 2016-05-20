@@ -26,7 +26,10 @@ Keys
  Use prefix # to generate protected functions or variables, for example: v:#protectedVariable
 
  Use prefix . to generate private functions or variable, for example: m:.privateFunc
+ 
+ Use prefix * in className to declare class as the final 
 
+ Use --public-gs to make setters and getters public 
   
 	
 Example
