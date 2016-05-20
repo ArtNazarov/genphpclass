@@ -13,5 +13,11 @@ QString classwrapper(QString myclass, QString constr, QString vrs, QString wrap,
         vrs = "";
         constr = "";
     };
-    return uclass + "{\r\n\r\n"+vrs+"\r\n"+constr+"\r\n"+"\r\n"+wrap+"}";
+    QString comm;
+    comm.append("/**\r\n");
+    comm.append("* \r\n");
+    comm.append("* Autocomment for "+uclass+"\r\n");
+    comm.append("* \r\n");
+    comm.append("/* \r\n");
+    return comm+uclass + "{\r\n\r\n"+vrs+"\r\n"+constr+"\r\n"+"\r\n"+wrap+"}";
 }
