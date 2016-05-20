@@ -54,8 +54,8 @@ QString functionwrapper(QString funcdecl, bool asInterface)
 
     };
 
-    comments.append("*");
-    comments.append("*/");
+    comments.append("*\r\n");
+    comments.append("*/\r\n");
     QString w = ";";
     if (!asInterface)
     {
