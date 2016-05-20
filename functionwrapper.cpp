@@ -26,30 +26,44 @@ QString functionwrapper(QString funcdecl, bool asInterface)
 
     QStringList formal_variables;
     QStringList declaration;
+    QStringList comments;
     QString methodname = funcdecl;
 
 
 
 
     QString vars = "";
+    QString v;
 
+    comments.append("/**");
+    comments.append("*");
 
     if (funcdecl.contains('@'))
     {
          formal_variables = funcdecl.split('@')[1].split('-');
          methodname = funcdecl.split('@')[0];
+         comments.append("* Autocomment for "+methodname);
          QStringListIterator fv (formal_variables);
          while (fv.hasNext())
          {
-             declaration.append('$'+fv.next());
+             v = fv.next();
+             declaration.append('$'+v);
+             comments.append("* @param $"+v);
          };
          vars = declaration.join(',');
+
     };
 
+    comments.append("*");
+    comments.append("*/");
     QString w = ";";
     if (!asInterface)
     {
         w = "{ }";
     };
-    return "\t " + scope + " function "+methodname+"( " + vars + " )"+ w + ";\r\n";
+
+
+
+
+    return comments.join("\r\n")+"\t " + scope + " function "+methodname+"( " + vars + " )"+ w + ";\r\n";
 }
